@@ -1,5 +1,4 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  skip_before_filter :redirect_to_login_if_required
 
   def steam
     # You need to implement the method below in your model (e.g. app/models/user.rb)
