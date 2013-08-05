@@ -5,16 +5,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:steam]
 
-  def self.find_for_steam_oauth(auth, signed_in_resource=nil)
-    user = User.where(:provider => auth.provider, :uid => auth.uid).first
-    unless user
-      user = User.create(name:auth.info.name,
-                           provider:auth.provider,
-                           uid:auth.uid,
-                           #email:auth.info.email,
-                           password:Devise.friendly_token[0,20]
-                           )
+  def self.find_for_steam_oauth(access_token, signed_in_resource=nil)
+    data = access_token.info
+    if user = User.where(:email => data["email"]).first
+      user
+    else
+      User.create!(:email => data["email"], :password => Devise.friendly_token[0,20])
     end
-    user
   end
 end
