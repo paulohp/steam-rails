@@ -6,7 +6,9 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
   config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
   require "omniauth-steam"
-  config.omniauth :steam, "7A67462537DC1C1BD6888FC7420A821F",{:client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}} 
+  config.omniauth :steam, "7A67462537DC1C1BD6888FC7420A821F"
+  require "openid/fetchers"
+  OpenID.fetcher.ca_file = "/usr/lib/ssl/certs/ca-certificates.crt"
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
 
