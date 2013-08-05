@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     if user = User.where(:username => data["nickname"]).first
       user
     else
-      User.create!(:provider => provider, :uid => uid, :picture => data['image'] :username => data["nickname"] ,:email => "example@company.com", :password => Devise.friendly_token[0,20])
+      User.create!(:provider => provider, :uid => uid,:name => data['name'], :picture => data['image'], :username => data["nickname"] ,:email => "example@company.com", :password => Devise.friendly_token[0,20])
     end
   end
 

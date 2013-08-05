@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Profile</th>
       <th>Name</th>
       <th>Uid</th>
       <th>Provider</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td><%= image_tag user.picture %></td>
         <td><%= user.name %></td>
         <td><%= user.uid %></td>
         <td><%= user.provider %></td>
