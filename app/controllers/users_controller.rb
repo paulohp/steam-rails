@@ -47,7 +47,7 @@ class UsersController < ApplicationController
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.json { render json: nil, status: :ok }
       end
     end
   end
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url }
-      format.json { head :no_content }
+      format.json { render json: nil, status: :ok }
     end
   end
 
